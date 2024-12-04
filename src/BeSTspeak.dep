@@ -1,0 +1,15 @@
+# Microsoft Developer Studio Generated Dependency File, included by BeSTspeak.mak
+
+.\BeSTspeak.cpp : \
+	".\BST.h"\
+	
+
+.\BeSTspeak.rc : \
+	".\BeSTspeak.ico"\
+	".\bst_smal.ico"\
+	
+
+.\StdAfx.cpp : \
+	"..\..\..\..\program files (x86)\microsoft visual studio\vc98\include\basetsd.h"\
+	".\StdAfx.h"\
+	

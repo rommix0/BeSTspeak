@@ -1,0 +1,142 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BESTSPEAK           ICON    DISCARDABLE     "bestspeak_opt.ICO"
+IDI_SMALL               ICON    DISCARDABLE     "bst_smal.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_BESTSPEAK MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Controls"
+    BEGIN
+        MENUITEM "&Decrease Volume\tF3",        ID_CONTROLS_DECREASEVOLUME
+        MENUITEM "&Increase Volume\tF4",        ID_CONTROLS_INCREASEVOLUME
+        MENUITEM "&Slower Speed\tF8",           ID_CONTROLS_SLOWERSPEED
+        MENUITEM "&Faster Speed\tF9",           ID_CONTROLS_FASTERSPEED
+        MENUITEM "&Lower Pitch\tF10",           ID_CONTROLS_PITCHDOWN
+        MENUITEM "Raise Pitch\tF11",            ID_CONTROLS_PITCHUP
+        MENUITEM SEPARATOR
+        MENUITEM "Speak &Text\tF5",             ID_CONTROLS_SPEAKTEXT
+        MENUITEM "St&op Speech\tF6",            ID_CONTROLS_SHUTUP
+        MENUITEM "&Reset Speech\tF7",           ID_CONTROLS_RESET
+    END
+    POPUP "&Voices"
+    BEGIN
+        MENUITEM "Fred",                        ID_VOICES_FRED
+        MENUITEM "Sarah",                       ID_VOICES_SARAH
+        MENUITEM "Harry",                       ID_VOICES_HARRY
+        MENUITEM "Martha",                      ID_VOICES_MARTHA
+        MENUITEM "Tim",                         ID_VOICES_TIM
+        MENUITEM "Dexter",                      ID_VOICES_DEXTER
+        MENUITEM "Alien",                       ID_VOICES_ALIEN
+        MENUITEM "Kit",                         ID_VOICES_KIT
+        MENUITEM "Wendy",                       ID_VOICES_WENDY
+        MENUITEM "Bruno",                       ID_VOICES_BRUNO
+        MENUITEM "Granny",                      ID_VOICES_GRANNY
+        MENUITEM "Ghost",                       ID_VOICES_GHOST
+        MENUITEM "Peeper",                      ID_VOICES_PEEPER
+        MENUITEM "Dracula",                     ID_VOICES_DRACULA
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Key&board Commands\tF1",      IDM_HELP
+        MENUITEM "&About\tF2",                  IDM_ABOUT
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_TITLE           "BeSTspeak"
+    IDC_BESTSPEAK           "BESTSPEAK"
+    COPYLEFT_STRING         "Copyleft © 2024 Anthony C. Bartman (@rommix0)"
+    COPYRIGHT_STRING        "Copyright © 1985, 1991 Berkeley Speech Technologies, Inc."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
