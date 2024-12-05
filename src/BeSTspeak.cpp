@@ -24,6 +24,7 @@ HINSTANCE hInst;							// current instance
 TCHAR     szTitle[MAX_LOADSTRING];			// The title bar text
 TCHAR     szWindowClass[MAX_LOADSTRING];	// The title bar text
 HWND      hWndEdit;                         // hWnd for text box
+BOOL      hotkeysEnable = TRUE;             // Need for when the window is in focus
 
 // Foward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -330,17 +331,20 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	RegisterHotKey(hWnd, IDM_EXIT,                        MOD_NOREPEAT,               VK_ESCAPE);
 	RegisterHotKey(hWnd, IDM_HELP,                        MOD_NOREPEAT,               VK_F1);
 	RegisterHotKey(hWnd, IDM_ABOUT,                       MOD_NOREPEAT,               VK_F2);
-	RegisterHotKey(hWnd, ID_CONTROLS_DECREASEVOLUME,      MOD_NOREPEAT,               VK_F3);
-	RegisterHotKey(hWnd, ID_CONTROLS_INCREASEVOLUME,      MOD_NOREPEAT,               VK_F4);
+	RegisterHotKey(hWnd, ID_CONTROLS_RESET,               MOD_NOREPEAT,               VK_F3);
+	RegisterHotKey(hWnd, ID_CONTROLS_SHUTUP,              MOD_NOREPEAT,               VK_F4);
 	RegisterHotKey(hWnd, ID_CONTROLS_SPEAKTEXT,           MOD_NOREPEAT,               VK_F5);
-	RegisterHotKey(hWnd, ID_CONTROLS_SHUTUP,              MOD_NOREPEAT,               VK_F6);
-	RegisterHotKey(hWnd, ID_CONTROLS_RESET,               MOD_NOREPEAT,               VK_F7);
-	RegisterHotKey(hWnd, ID_CONTROLS_SLOWERSPEED,         MOD_NOREPEAT,               VK_F8);
-	RegisterHotKey(hWnd, ID_CONTROLS_FASTERSPEED,         MOD_NOREPEAT,               VK_F9);
-	RegisterHotKey(hWnd, ID_CONTROLS_PITCHDOWN,           MOD_NOREPEAT,               VK_F10);
-	RegisterHotKey(hWnd, ID_CONTROLS_PITCHUP,             MOD_NOREPEAT,               VK_F11);
+
+	RegisterHotKey(hWnd, ID_CONTROLS_DECREASEVOLUME,      MOD_CONTROL | MOD_NOREPEAT, VK_F6);
+	RegisterHotKey(hWnd, ID_CONTROLS_INCREASEVOLUME,      MOD_NOREPEAT,               VK_F6);
+
+	RegisterHotKey(hWnd, ID_CONTROLS_SLOWERSPEED,         MOD_NOREPEAT,               VK_F7);
+	RegisterHotKey(hWnd, ID_CONTROLS_FASTERSPEED,         MOD_NOREPEAT,               VK_F8);
+	RegisterHotKey(hWnd, ID_CONTROLS_PITCHDOWN,           MOD_NOREPEAT,               VK_F9);
+	RegisterHotKey(hWnd, ID_CONTROLS_PITCHUP,             MOD_NOREPEAT,               VK_F10);
+
 	RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEBACKWARD, MOD_CONTROL | MOD_NOREPEAT, VK_F11);
-	RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEFORWARD,  MOD_CONTROL | MOD_NOREPEAT, VK_F12);
+	RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEFORWARD,  MOD_NOREPEAT,               VK_F11);
 
 	// Main message loop:
 	while (GetMessage(&msg, NULL, 0, 0)) 
@@ -411,25 +415,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case WM_HOTKEY:
 			// Parse hotkeys for responsive actions
-			wmId = LOWORD(wParam);
-			switch (wmId)
-			{
-				case ID_CONTROLS_VOICECHANGEBACKWARD:
-					voice_select -= 1;
-					if (voice_select < FRED) {
-						voice_select = DRACULA;
-					}
-					PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
-					break;
-				case ID_CONTROLS_VOICECHANGEFORWARD:
-					voice_select += 1;
-					if (voice_select > DRACULA) {
-						voice_select = FRED;
-					}
-					PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
-					break;
-				default:
-					PostMessage(hWnd, WM_COMMAND, wmId, lParam);
+			if (hotkeysEnable) {
+				wmId = LOWORD(wParam);
+				switch (wmId)
+				{
+					case ID_CONTROLS_VOICECHANGEBACKWARD:
+						voice_select -= 1;
+						if (voice_select < FRED) {
+							voice_select = DRACULA;
+						}
+						PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
+						break;
+					case ID_CONTROLS_VOICECHANGEFORWARD:
+						voice_select += 1;
+						if (voice_select > DRACULA) {
+							voice_select = FRED;
+						}
+						PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
+						break;
+					default:
+						PostMessage(hWnd, WM_COMMAND, wmId, lParam);
+				}
 			}
 			break;
 		case WM_COMMAND:
@@ -441,6 +447,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					break;
 				case IDM_HELP:
 					SpeakText(hWnd, help_text);
+					SpeakText(hWnd, "End of help!");
 					break;
 				case IDM_EXIT:
 					SpeakText(hWnd, "Exiting.");
@@ -550,6 +557,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case WM_SETFOCUS:
 			SetFocus(hwndEdit);
+			break;
+		case WM_ACTIVATE:
+			// Turn hotkeys on or off based on window focus
+			// This is needed to prevent hotkey conflicts when out of focus
+			if (LOWORD(wParam) == WA_INACTIVE) {
+				hotkeysEnable = FALSE;
+			} else {
+				hotkeysEnable = TRUE;
+			}
 			break;
 		case WM_SIZE:
 			MoveWindow(hwndEdit, 0, 0, LOWORD(lParam), HIWORD(lParam), TRUE);

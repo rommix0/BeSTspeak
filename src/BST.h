@@ -7,6 +7,8 @@
 //         +  added pitch adjustment
 //         +  added keyboard hotkeys
 //         +  replaced BST.DLL with original B32_TTS.DLL
+//		   +  Added WM_ACTIVATE for disabling hotkeys when window is out of focus
+//         +  Re-arranged hotkeys to make better sense.
 
 // Voice IDs
 #define FRED 0
@@ -144,6 +146,19 @@ char      *prefix_freq;                         // Prefix string for baseline pi
 int        voice_select = 0;                    // Used for voice selection via hotkeys
 
 // About and help text for the synthesizer to speak
-char *version_text = "Best speak version one point oh one is running.";
-char *about_text   = "Best speak version one point oh one. Programmed and built on december fourth, twenty twenty four by Anthony C Bartman. This version of T T S was created by Berkeley Speech Technologies between 1985 and 1991.";
-char *help_text    = "Escape to exit. F1 for help. F2 to describe program credits. F3 to make quieter. F4 to make louder. F5 to speak. F6 to stop speaking. F7 to reset synthesizer. F8 to speak slower. F9 to speak faster. F10 to lower pitch. F11 to raise pitch. Control F11 to change voice backwards. Control F12 to change voice forwards. End of help.";
+const char *version_text = "Best speak version one point oh one is running.";
+const char *about_text   = "Best speak version one point oh one. Programmed and built on december fourth, twenty twenty four by Anthony C Bartman. This version of T T S was created by Berkeley Speech Technologies between 1985 and 1991.";
+const char *help_text    = 
+	"F1 for help. "
+	"F2 for program credits. "
+	"F3 to reset synthesizer. "
+	"F4 to stop speaking. "
+	"F5 to speak text. "
+	"F6 to increase volume. "
+	"Control F6 to decrease volume. "
+	"F7 to make slower. "
+	"F8 to make faster. "
+	"F9 to lower pitch. "
+	"F10 to raise pitch. "
+	"F11 to change voice forwards. "
+	"Control F11 to change voice backwards.";
