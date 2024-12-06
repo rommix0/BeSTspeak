@@ -1,6 +1,6 @@
 // *************************************************************
 // *                                                           *
-// *                    BeSTspeak v1.01                        *
+// *                    BeSTspeak v1.011                       *
 // *                                                           *
 // *             Programmed by Anthony C. Bartman              *
 // *                                                           *
@@ -436,6 +436,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					default:
 						PostMessage(hWnd, WM_COMMAND, wmId, lParam);
 				}
+			} else {
+				// Process default window procedures to possibly prevent conflict with other programs
+				return DefWindowProc(hWnd, message, wParam, lParam);
 			}
 			break;
 		case WM_COMMAND:
