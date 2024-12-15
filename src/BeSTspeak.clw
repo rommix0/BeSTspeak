@@ -10,9 +10,10 @@ LastPage=0
 
 ClassCount=0
 
-ResourceCount=2
+ResourceCount=3
 Resource1=SPEAKACCEL (Neutral (Default))
-Resource2=IDC_BESTSPEAK
+Resource2=SPECIALACC (Neutral (Default))
+Resource3=IDC_BESTSPEAK
 
 [MNU:IDC_BESTSPEAK]
 Type=1
@@ -61,4 +62,10 @@ Command10=ID_CONTROLS_RESET
 Command11=ID_CONTROLS_SLOWERSPEED
 Command12=ID_CONTROLS_FASTERSPEED
 CommandCount=12
+
+[ACL:SPECIALACC (Neutral (Default))]
+Type=1
+Class=?
+Command1=IDS_SELECT
+CommandCount=1
 

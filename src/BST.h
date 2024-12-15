@@ -2,13 +2,22 @@
 //
 // Author: Anthony C. Bartman (@rommix0)
 //
-// v1.00 - first version            (11/28/2024)
-// v1.01 - minor changes and fixes. (12/04/2024)
-//         +  added pitch adjustment
-//         +  added keyboard hotkeys
-//         +  replaced BST.DLL with original B32_TTS.DLL
-//		   +  Added WM_ACTIVATE for disabling hotkeys when window is out of focus
+// v1.00 - first version             (11/28/2024)
+//
+// v1.01 - minor changes and fixes   (12/04/2024)
+//         +  added pitch adjustment.
+//         +  added keyboard hotkeys.
+//         +  replaced BST.DLL with original B32_TTS.DLL.
+//		   +  Added WM_ACTIVATE for disabling hotkeys when window is out of focus.
 //         +  Re-arranged hotkeys to make better sense.
+//
+// v1.02 - fixes and updates         (12/15/2024)
+//         +  Fixed hotkey handling. Now uses Unregisterhotkey routine to free up hotkeys
+//            for other programs when BeSTspeak is not in focus.
+//         +  Increased text box character limit.
+//         +  Added functionality for selecting text using Ctrl+A.
+//         +  Shortened startup announcement.
+//         +  Added LIBCTINY.LIB to linker (makes executable smaller)
 
 // Voice IDs
 #define FRED 0
@@ -146,11 +155,17 @@ char      *prefix_freq;                         // Prefix string for baseline pi
 int        voice_select = 0;                    // Used for voice selection via hotkeys
 
 // About and help text for the synthesizer to speak
-const char *version_text = "Best speak version one point oh one is running.";
-const char *about_text   = "Best speak version one point oh one. Programmed and built on december fourth, twenty twenty four by Anthony C Bartman. This version of T T S was created by Berkeley Speech Technologies between 1985 and 1991.";
+//const char *version_text = "Best speak version one point oh two is running."; // no longer used.
+
+const char *about_text   =
+	"Best speak version one point oh two. "
+	"Compiled on december fifteen, twenty twenty four by rommix zero. "
+	"T T S version one point oh 1 D, revision 4, released in 1994 by Berkeley Speech Technologies. "
+	"End of credits!";
+
 const char *help_text    = 
 	"F1 for help. "
-	"F2 for program credits. "
+	"F2 for credits. "
 	"F3 to reset synthesizer. "
 	"F4 to stop speaking. "
 	"F5 to speak text. "
@@ -161,4 +176,5 @@ const char *help_text    =
 	"F9 to lower pitch. "
 	"F10 to raise pitch. "
 	"F11 to change voice forwards. "
-	"Control F11 to change voice backwards.";
+	"Control F11 to change voice backwards. "
+	"End of help!";

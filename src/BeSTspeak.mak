@@ -51,7 +51,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /ML /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\BeSTspeak.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\BeSTspeak.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\BeSTspeak.res" /d "NDEBUG" 
 BSC32=bscmake.exe
@@ -59,11 +59,11 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\BeSTspeak.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\BeSTspeak.pdb" /machine:I386 /out:"$(OUTDIR)\BeSTspeak.exe" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib LIBCTINY.LIB /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\BeSTspeak.pdb" /machine:I386 /out:"$(OUTDIR)\BeSTspeak.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)\BeSTspeak.obj" \
 	"$(INTDIR)\StdAfx.obj" \
-	"$(INTDIR)\BeSTspeak.res"
+	"$(INTDIR)\BeSTspeak.res" \
+	"$(INTDIR)\BeSTspeak.obj"
 
 "$(OUTDIR)\BeSTspeak.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -172,7 +172,7 @@ SOURCE=.\StdAfx.cpp
 
 !IF  "$(CFG)" == "BeSTspeak - Win32 Release"
 
-CPP_SWITCHES=/nologo /ML /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\BeSTspeak.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\BeSTspeak.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /c 
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\BeSTspeak.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<

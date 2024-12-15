@@ -1,5 +1,5 @@
-BeSTspeak v1.01
-------------------------------------------------------------------------------------------------------------------------------
+BeSTspeak speak window
+@rommix0
 
 This is a very straight forward text to speech speak window program.
 

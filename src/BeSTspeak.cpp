@@ -1,6 +1,6 @@
 // *************************************************************
 // *                                                           *
-// *                    BeSTspeak v1.011                       *
+// *                    BeSTspeak v1.02                        *
 // *                                                           *
 // *             Programmed by Anthony C. Bartman              *
 // *                                                           *
@@ -17,14 +17,14 @@
 
 #define ID_CONTROLS_VOICECHANGEFORWARD  500
 #define ID_CONTROLS_VOICECHANGEBACKWARD 501
+#define IDS_SELECT                      502
 #define MOD_NOREPEAT                    0x4000
 
 // Global Variables:
-HINSTANCE hInst;							// current instance
-TCHAR     szTitle[MAX_LOADSTRING];			// The title bar text
-TCHAR     szWindowClass[MAX_LOADSTRING];	// The title bar text
-HWND      hWndEdit;                         // hWnd for text box
-BOOL      hotkeysEnable = TRUE;             // Need for when the window is in focus
+HINSTANCE hInst;							                // current instance
+TCHAR     szTitle[MAX_LOADSTRING];			                // The title bar text
+TCHAR     szWindowClass[MAX_LOADSTRING];	                // The title bar text
+HWND      hWndEdit;                                         // hWnd for text box
 
 // Foward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -249,27 +249,26 @@ void CloseSpeech() {
 
 // Function for speaking text
 void SpeakText(HWND hWnd, const char *text, bool init = FALSE) {
-	int _ret = InitSpeech();
-	if (_ret) {
-		// Add prefix strings to text using malloc and string operations
-		char       *text_to_speak;
+	if (InitSpeech()) {	
 		const char *p_prefix = prefix;
 		const char *r_prefix = prefix_rate;
 		const char *f_prefix = prefix_freq;
+		int         text_len;
+		char       *text_to_speak;
 		if (init) {
-			_bstSetParams(tts_handle, RATE_SETTING, 0);
-			text_to_speak = (char *)malloc(strlen(p_prefix) + strlen(r_prefix) + strlen(f_prefix) + strlen(text) + 1);
+			text_len  = strlen(p_prefix) + strlen(r_prefix) + strlen(f_prefix) + strlen(text);
+			text_to_speak = (char *)malloc(text_len);
+			strcpy(text_to_speak, p_prefix);
+			strcat(text_to_speak, r_prefix);
+			strcat(text_to_speak, f_prefix);
+			strcat(text_to_speak, text);
+		} else {
+			text_len  = strlen(p_prefix) + strlen(f_prefix) + strlen(text);
+			text_to_speak = (char *)malloc(text_len);
 			strcpy(text_to_speak, p_prefix);
 			strcat(text_to_speak, f_prefix);
 			strcat(text_to_speak, text);
 		}
-		else {
-			text_to_speak = (char *)malloc(strlen(p_prefix) + strlen(f_prefix) + strlen(text) + 1);
-			strcpy(text_to_speak, p_prefix);
-			strcat(text_to_speak, f_prefix);
-			strcat(text_to_speak, text);
-		}
-
 
 		// Speak the text
 		_TtsWav(tts_handle, hWnd, text_to_speak);
@@ -277,6 +276,46 @@ void SpeakText(HWND hWnd, const char *text, bool init = FALSE) {
 	}
 }
 
+// Toggle hotkeys (for use and to free up for other programs when window is out of focus)
+void ToggleHotkeys(HWND hWnd, BOOL to_enable) {
+	if (to_enable) {
+		RegisterHotKey(hWnd, IDM_EXIT,                        MOD_NOREPEAT,               VK_ESCAPE);
+		RegisterHotKey(hWnd, IDM_HELP,                        MOD_NOREPEAT,               VK_F1);
+		RegisterHotKey(hWnd, IDM_ABOUT,                       MOD_NOREPEAT,               VK_F2);
+		RegisterHotKey(hWnd, ID_CONTROLS_RESET,               MOD_NOREPEAT,               VK_F3);
+		RegisterHotKey(hWnd, ID_CONTROLS_SHUTUP,              MOD_NOREPEAT,               VK_F4);
+		RegisterHotKey(hWnd, ID_CONTROLS_SPEAKTEXT,           MOD_NOREPEAT,               VK_F5);
+
+		RegisterHotKey(hWnd, ID_CONTROLS_DECREASEVOLUME,      MOD_CONTROL | MOD_NOREPEAT, VK_F6);
+		RegisterHotKey(hWnd, ID_CONTROLS_INCREASEVOLUME,      MOD_NOREPEAT,               VK_F6);
+
+		RegisterHotKey(hWnd, ID_CONTROLS_SLOWERSPEED,         MOD_NOREPEAT,               VK_F7);
+		RegisterHotKey(hWnd, ID_CONTROLS_FASTERSPEED,         MOD_NOREPEAT,               VK_F8);
+		RegisterHotKey(hWnd, ID_CONTROLS_PITCHDOWN,           MOD_NOREPEAT,               VK_F9);
+		RegisterHotKey(hWnd, ID_CONTROLS_PITCHUP,             MOD_NOREPEAT,               VK_F10);
+
+		RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEBACKWARD, MOD_CONTROL | MOD_NOREPEAT, VK_F11);
+		RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEFORWARD,  MOD_NOREPEAT,               VK_F11);
+
+		RegisterHotKey(hWnd, IDS_SELECT,                      MOD_CONTROL | MOD_NOREPEAT, 0x41);
+	} else {
+		UnregisterHotKey(hWnd, IDM_EXIT);
+		UnregisterHotKey(hWnd, IDM_HELP);
+		UnregisterHotKey(hWnd, IDM_ABOUT);
+		UnregisterHotKey(hWnd, ID_CONTROLS_RESET);
+		UnregisterHotKey(hWnd, ID_CONTROLS_SHUTUP);
+		UnregisterHotKey(hWnd, ID_CONTROLS_SPEAKTEXT);
+		UnregisterHotKey(hWnd, ID_CONTROLS_DECREASEVOLUME);
+		UnregisterHotKey(hWnd, ID_CONTROLS_INCREASEVOLUME);
+		UnregisterHotKey(hWnd, ID_CONTROLS_SLOWERSPEED);
+		UnregisterHotKey(hWnd, ID_CONTROLS_FASTERSPEED);
+		UnregisterHotKey(hWnd, ID_CONTROLS_PITCHDOWN);
+		UnregisterHotKey(hWnd, ID_CONTROLS_PITCHUP);
+		UnregisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEBACKWARD);
+		UnregisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEFORWARD);
+		UnregisterHotKey(hWnd, IDS_SELECT);
+	}
+}
 
 int APIENTRY WinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -284,8 +323,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      int       nCmdShow)
 {
 	// Check if BST.DLL is loaded into memory
+	// If not, output a message and exit with return code 1
 	if (!bstLib) {
-		MessageBox(NULL, "TTS system not found!", "TTS Engine Error!", MB_ICONERROR);
+		MessageBox(NULL, "T-T-S not found!", "TTS Engine Error!", MB_ICONERROR);
 		return 1;
 	}
 
@@ -317,34 +357,19 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	hInst = hInstance; // Store instance handle in our global variable
 
+	// Create our main window here.
+	// If unsuccessful, exit out with return code 3
 	hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		                CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
-	if (!hWnd)
-	{
-		return FALSE;
+	if (!hWnd) {
+		return 3;
 	}
 
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	// Register hotkeys for responsive keyboard shortcuts
-	RegisterHotKey(hWnd, IDM_EXIT,                        MOD_NOREPEAT,               VK_ESCAPE);
-	RegisterHotKey(hWnd, IDM_HELP,                        MOD_NOREPEAT,               VK_F1);
-	RegisterHotKey(hWnd, IDM_ABOUT,                       MOD_NOREPEAT,               VK_F2);
-	RegisterHotKey(hWnd, ID_CONTROLS_RESET,               MOD_NOREPEAT,               VK_F3);
-	RegisterHotKey(hWnd, ID_CONTROLS_SHUTUP,              MOD_NOREPEAT,               VK_F4);
-	RegisterHotKey(hWnd, ID_CONTROLS_SPEAKTEXT,           MOD_NOREPEAT,               VK_F5);
-
-	RegisterHotKey(hWnd, ID_CONTROLS_DECREASEVOLUME,      MOD_CONTROL | MOD_NOREPEAT, VK_F6);
-	RegisterHotKey(hWnd, ID_CONTROLS_INCREASEVOLUME,      MOD_NOREPEAT,               VK_F6);
-
-	RegisterHotKey(hWnd, ID_CONTROLS_SLOWERSPEED,         MOD_NOREPEAT,               VK_F7);
-	RegisterHotKey(hWnd, ID_CONTROLS_FASTERSPEED,         MOD_NOREPEAT,               VK_F8);
-	RegisterHotKey(hWnd, ID_CONTROLS_PITCHDOWN,           MOD_NOREPEAT,               VK_F9);
-	RegisterHotKey(hWnd, ID_CONTROLS_PITCHUP,             MOD_NOREPEAT,               VK_F10);
-
-	RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEBACKWARD, MOD_CONTROL | MOD_NOREPEAT, VK_F11);
-	RegisterHotKey(hWnd, ID_CONTROLS_VOICECHANGEFORWARD,  MOD_NOREPEAT,               VK_F11);
+	// Register hotkeys on startup
+	ToggleHotkeys(hWnd, TRUE);
 
 	// Main message loop:
 	while (GetMessage(&msg, NULL, 0, 0)) 
@@ -391,13 +416,12 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	return RegisterClassEx(&wcex);
 }
 
-
 // Main callback function where the majority of functions happen
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static HWND hwndEdit; // static keyword is important for textbox fill to work.
 	HWND   hwnd_text;
-	char  *read_buf;
+	char  *speak_buf;
 	int    wmId;
 	int    len;
 
@@ -405,52 +429,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		case WM_CREATE:
 			hwndEdit = CreateWindow(
-				"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL,
-				0, 0, 0, 0,
-				hWnd,
+				"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL | ES_NOHIDESEL,
+				0, 0, 0, 0, hWnd,
 				(HMENU) ID_EDITCHILD,
 				(HINSTANCE) GetWindowLong(hWnd, -6),
 				NULL);
-			PostMessage(hWnd, WM_STARTUP, wParam, lParam); // Send message to announce TTS version after window is open.
+			SendMessage(hwndEdit, EM_SETLIMITTEXT,      0, 0); // Increase text character limit.
+			PostMessage(hWnd,     WM_STARTUP, wParam, lParam); // Send message to announce TTS version after window is open.
 			break;
 		case WM_HOTKEY:
-			// Parse hotkeys for responsive actions
-			if (hotkeysEnable) {
-				wmId = LOWORD(wParam);
-				switch (wmId)
-				{
-					case ID_CONTROLS_VOICECHANGEBACKWARD:
-						voice_select -= 1;
-						if (voice_select < FRED) {
-							voice_select = DRACULA;
-						}
-						PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
-						break;
-					case ID_CONTROLS_VOICECHANGEFORWARD:
-						voice_select += 1;
-						if (voice_select > DRACULA) {
-							voice_select = FRED;
-						}
-						PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
-						break;
-					default:
-						PostMessage(hWnd, WM_COMMAND, wmId, lParam);
-				}
-			} else {
-				// Process default window procedures to possibly prevent conflict with other programs
-				return DefWindowProc(hWnd, message, wParam, lParam);
+			wmId = LOWORD(wParam);
+			switch (wmId)
+			{
+				case ID_CONTROLS_VOICECHANGEBACKWARD:
+					voice_select -= 1;
+					if (voice_select < FRED) {
+						voice_select = DRACULA;
+					}
+					PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
+					break;
+				case ID_CONTROLS_VOICECHANGEFORWARD:
+					voice_select += 1;
+					if (voice_select > DRACULA) {
+						voice_select = FRED;
+					}
+					PostMessage(hWnd, WM_COMMAND, ID_VOICES_FRED + voice_select, lParam);
+					break;
+				default:
+					PostMessage(hWnd, WM_COMMAND, wmId, lParam);
 			}
 			break;
 		case WM_COMMAND:
 			// Parse the menu selections:
 			switch (LOWORD(wParam))
 			{
+				case IDS_SELECT:
+					// Select all text using Ctrl+A
+					SendMessage(hwndEdit, EM_SETSEL, 0, -1);
+					break;
 				case IDM_ABOUT:
 					SpeakText(hWnd, about_text);
 					break;
 				case IDM_HELP:
 					SpeakText(hWnd, help_text);
-					SpeakText(hWnd, "End of help!");
 					break;
 				case IDM_EXIT:
 					SpeakText(hWnd, "Exiting.");
@@ -460,12 +481,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					// Grab text from EDIT control and allocate memory for it for the synthesizer to speak it.
 					hwnd_text = GetDlgItem(hWnd, ID_EDITCHILD);
 					len = GetWindowTextLength(hwnd_text) + 1;
-					read_buf = (char *)malloc(len);
-					GetWindowText(hwnd_text, read_buf, len);
-					
+					speak_buf = (char *)malloc(len);
+					GetWindowText(hwnd_text, speak_buf, len);
+
 					// Speak the text
-					SpeakText(hWnd, read_buf);
-					free(read_buf);
+					SpeakText(hWnd, speak_buf);
+					free(speak_buf);
 					break;
 				case ID_CONTROLS_SHUTUP:
 					SpeakText(hWnd, "");
@@ -562,12 +583,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetFocus(hwndEdit);
 			break;
 		case WM_ACTIVATE:
-			// Turn hotkeys on or off based on window focus
-			// This is needed to prevent hotkey conflicts when out of focus
 			if (LOWORD(wParam) == WA_INACTIVE) {
-				hotkeysEnable = FALSE;
+				ToggleHotkeys(hWnd, FALSE);
 			} else {
-				hotkeysEnable = TRUE;
+				ToggleHotkeys(hWnd, TRUE);
 			}
 			break;
 		case WM_SIZE:
@@ -579,7 +598,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 			break;
 		case WM_STARTUP:
-			SpeakText(hWnd, version_text, TRUE);
+			// startup announcement shortened for v1.02
+			SpeakText(hWnd, "Ready!", TRUE);
 			break;
 		case TTS_BUFFER_FULL:
 			_bstRelBuf(tts_handle);
