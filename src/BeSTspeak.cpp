@@ -256,6 +256,7 @@ void SpeakText(HWND hWnd, const char *text, bool init = FALSE) {
 		int         text_len;
 		char       *text_to_speak;
 		if (init) {
+			_bstSetParams(tts_handle, RATE_SETTING, 0); // needs to be called to reset rate
 			text_len  = strlen(p_prefix) + strlen(r_prefix) + strlen(f_prefix) + strlen(text);
 			text_to_speak = (char *)malloc(text_len);
 			strcpy(text_to_speak, p_prefix);
