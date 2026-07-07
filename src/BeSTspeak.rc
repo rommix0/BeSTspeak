@@ -1,0 +1,191 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BESTSPEAK           ICON    DISCARDABLE     "bestspeak.ico"
+IDI_SMALL               ICON    DISCARDABLE     "bst_smal.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_BESTSPEAK MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Controls"
+    BEGIN
+        MENUITEM "&Increase Volume",            ID_CONTROLS_INCREASEVOLUME
+        MENUITEM "&Decrease Volume",            ID_CONTROLS_DECREASEVOLUME
+        MENUITEM "&Faster Speed",               ID_CONTROLS_FASTERSPEED
+        MENUITEM "&Slower Speed",               ID_CONTROLS_SLOWERSPEED
+        MENUITEM SEPARATOR
+        MENUITEM "Speak &Text",                 ID_CONTROLS_SPEAKTEXT
+        MENUITEM "St&op Speech",                ID_CONTROLS_SHUTUP
+        MENUITEM "&Reset Speech",               ID_CONTROLS_RESET
+    END
+    POPUP "&Voices"
+    BEGIN
+        MENUITEM "Fred",                        ID_VOICES_FRED
+        MENUITEM "Sarah",                       ID_VOICES_SARAH
+        MENUITEM "Harry",                       ID_VOICES_HARRY
+        MENUITEM "Martha",                      ID_VOICES_MARTHA
+        MENUITEM "Tim",                         ID_VOICES_TIM
+        MENUITEM "Dexter",                      ID_VOICES_DEXTER
+        MENUITEM "Alien",                       ID_VOICES_ALIEN
+        MENUITEM "Kit",                         ID_VOICES_KIT
+        MENUITEM "Wendy",                       ID_VOICES_WENDY
+        MENUITEM "Bruno",                       ID_VOICES_BRUNO
+        MENUITEM "Granny",                      ID_VOICES_GRANNY
+        MENUITEM "Ghost",                       ID_VOICES_GHOST
+        MENUITEM "Peeper",                      ID_VOICES_PEEPER
+        MENUITEM "Dracula",                     ID_VOICES_DRACULA
+    END
+    POPUP "Help", GRAYED
+    BEGIN
+        MENUITEM "About ...",                   ID_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  22, 17, 217, 124
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "System"
+BEGIN
+    LTEXT           "BeSTspeak Version 1.0",IDC_STATIC,67,53,80,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyleft © 2024 @rommix0 (GUI and custom voices)",
+                    IDC_STATIC,12,77,193,8
+    DEFPUSHBUTTON   "OK",IDOK,75,107,64,11,WS_GROUP
+    LTEXT           "Copyright © 1985, 1991 Berkeley Speech Technologies, Inc.",
+                    IDC_STATIC,12,87,198,11
+    CONTROL         132,IDC_STATIC,"Static",SS_BITMAP,67,7,77,38
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ABOUT               BITMAP  DISCARDABLE     "about_pic.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 118
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+SPEAKACCEL ACCELERATORS DISCARDABLE 
+BEGIN
+    VK_F1,          ID_CONTROLS_HELP,       VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_TITLE           "BeSTspeak"
+    IDC_BESTSPEAK           "BESTSPEAK"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
