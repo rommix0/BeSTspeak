@@ -1,0 +1,19 @@
+Final voices to be used with BeSTspeak (init using prefix string):
+--------------------------------------------------------
+
+Fred is default voice.
+
+Fred	~v0]~e3]~f80]~r0]~h0]~u0]
+Sarah	~v2]~e3]~f175]~r0]~h-20]~u0]
+Harry	~v3]~e3]~f65]~r5]~h10]~u0]
+Wendy	~v2]~e1]~f150]~r-5]~h50]~u0]
+Dexter	~v6]~e6]~f90]~r7]~h0]~u-25]
+Alien	~v4]~e6]~f115]~r-20]~h-50]~u-20]
+Kit 	~v5]~e3]~f230]~r-10]~h40]~u0]
+Bruno	~v3]~e3]~f60]~r8]~h50]~u0]
+Ghost	~v3]~e2]~f80]~r0]~h0]~u0]
+Peeper	~v2]~e2]~f80]~r0]~h0]~u5]
+Dracula	~v3]~e3]~f47]~r10]~h45]~u-5]
+Granny	~v4]~e3]~f350]~r20]~h-60]~u0]
+Martha	~v6]~e4]~f300]~r-10]~h100]~u-5]
+Tim 	~v3]~e4]~f60]~r-10]~h-10]~u0]

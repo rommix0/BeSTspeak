@@ -1,0 +1,49 @@
+Important functions with data types:
+----------------------------------------------------
+
+Advanced functions (only use if you know how to use callback functions in C++):
+
+	int __cdecl TtsWav(int instance, HWnd window_handle, string text_to_speak);
+		returns status
+
+	int __cdecl bstCreate(int *instance_pointer);
+		returns status
+
+	int __cdecl bstOpen(int instance);
+		returns status
+
+	int __cdecl bstShutup(int instance);
+		returns status
+
+	int __cdecl bstClose(int instance);
+		returns status
+
+	int __cdecl bstDestroy(int instance);
+		returns status
+
+
+Simple functions (used for the BeSTspeak program. It does callback handling automatically)
+
+	BOOL __cdecl bstCreateTts(HWND hWndParent);
+		returns status (1 is a success)
+		hWndParent is absolutely necessary. can use invisible dummy window.
+
+	int __cdecl SayBstText(0, string text_to_speak);
+		returns status
+
+
+Order of operation (for the advanced functions):
+----------------------------------------------------
+
+1) Create instance of the text to speech synthesizer.
+	status = bstCreate(*instance_pointer);
+
+1b) If status is not right (like not returning 0), then raise an error and exit.
+
+2) Speak some text.
+	TtsWav(instance, window_handle, text);
+
+3) Close the instance down after a window callback, and exit the program.
+	bstShutup(instance);
+	bstClose(instance);
+	bstDestroy(instance);

@@ -1,0 +1,3 @@
+Progress on using the BeSTSpeech API (Keynote GOLD)
+
+Using Python to test the BeSTspeech API via DLL, and it is working while callback is partially working as it hangs.

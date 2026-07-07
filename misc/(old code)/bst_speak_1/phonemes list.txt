@@ -1,0 +1,208 @@
+Boundaries and Silence
+-----------------------------------------------------------------------------
+
+	$W			word boundary
+	$C			a major prosodic boundary (primary stress)
+	$P			a minor prosodic boundary (secondary stress)
+	sl			silence (~80 milliseconds long)
+
+Consonant phonemes:
+-----------------------------------------------------------------------------
+
+w	---	watt	wet	woo	quit	Duane	wham
+
+y	---	yacht	yet	you	use	argue	yam
+
+h	---	hot	heard	who	hi	ahoy	ham
+
+m	---	sum	ramp	my	limb	ample	moose
+
+n	---	sun	rant	nigh	Lynn	handle	noose
+
+ng	---	sung	rank	drunk	long	ankle	pinging
+
+l	---	lots	stole	feel	sold	lily	fled
+
+r	---	rots	store	fear	soared	rare	Fred
+
+f	---	fat	half	rough	lift	phase	off
+
+v	---	vat	have	shove	lived	cover	vivid
+
+th	---	booth	author	ether	anthem	thesis	therapy
+
+dh	---	smooth	other	either	rhythm	these	there
+
+s	---	sue	bus	lace	recent	city	oxen
+
+z	---	zoo	buzz	lays	resent	zitty	exact
+
+ch	---	batch	chin	hitch	nature	virtual	church
+
+jh	---	badge	gin	Jeff	soldier	gradual	judge
+
+sh	---	bash	shin	chef	nation	racial	mission
+
+zh	---	beige	measure	vision	fusion	casual	seizure
+
+b	---	bats	robe	baby	beak	obey	amble
+
+p	---	pats	rope	puppy	speak	opaque	ample
+
+d	---	door	mad	dime	did	buzzed	road
+
+t	---	tore	mat	time	strut	bussed	wrote
+
+g	---	got	rag	ogre	Greg	agog	figs
+
+k	---	cot	rack	ocher	quake	pique	fix
+
+
+Vowel phonemes:
+-----------------------------------------------------------------------------
+
+i	---	beet	leak	ease	we	ski	eel
+
+I	---	bit	lick	is	spirit	hear*	ill
+
+e	---	bait	lake	came	way	steak	ale
+
+E	---	bet	Lech	desk	merry	head	el
+
+ae	---	bat	lack	ask	graph	had	AI
+
+u	---	boot   	Luke	dune	move	stew	cooed
+
+U	---	put 	look	bush	lure	tour	could
+
+o	---	boat	choke	flow	woe	oboe	code
+
+O	---	bought	chalk	flaw	store*	long	cawed
+
+a	---	pot	lock	spa	mark	starry	cod
+
+^	---	but	luck	done	just	hull	cud
+
+R	---	Bert	lurk	earn	mirth	journey	curd
+
+ay	---	bite	like	hire	why	eyes	aisle
+
+Oy	---	boy	join	hoist	coy	oink	oil
+
+aw	---	bout	pound	house	cow	ouch	owl
+
+
+Additional notes for phonemes:
+-----------------------------------------------------------------------------
+
+Any of the vowel phonemes listed above for stressed syllables
+can appear in unstressed syllables as well.  For example, the
+final syllable of "lucky" has the same vowel phoneme ("i") as
+"keep".  Those forms starred (*) contain vowels which are
+conventionally considered to be lax due to the following "r".
+There is an additional vowel phoneme ("=") that only appears in
+unstressed syllables.
+
+	=	---	canal (1st syllable)	support (1st syllable)
+
+			action (2nd syllable)	tickle (2nd syllable)
+
+Stress symbols in words are placed after the vowel of the
+stressed syllable.  Primary stress is a single quote ';
+secondary stress is double quotes ".  Boundaries between words
+in multiword transcriptions are marked by the symbol $W.
+
+Stress marks and phoneme symbols must always be preceded by a
+space.  If a phoneme symbol is made up of two characters ("sh")
+they must be kept together.  For example:
+
+	quiche			k i ' sh
+
+	pizza			p i ' t s =
+
+	fettuchine 		f E " t = ch i ' n i
+
+	three bedroom	[x]3BR th r i " $W b E ' d r u m [t]
+
+
+Precisely Specifying Stress and Pitch
+-----------------------------------------------------------------------------
+
+It is possible to fine-tune the intonation contours of a
+phonemically transcribed passage by the use of stress and pitch
+markers.  The best way to learn to use these is by experimenting
+and listening carefully to the result.
+
+Stress is indicated by a dollar sign ($).  Pitch is indicated by
+a pound sign (œ).  These signs are followed by a digit that
+indicates the level of stress or pitch.  Higher numbers indicate
+higher levels.
+
+As noted earlier, primary stress in words can be be marked by
+placing the symbol ' after the vowel of the most-stressed
+syllable in a word.  Using the ' symbol has the same effect as
+using the stress level indicator $6.
+
+The stress and pitch levels for secondary word stress " are: $5
+œ4.  The default stress level is $2 (for unstressed syllables).
+
+When transcribing a full text, stress and pitch markers may be
+used to specify utterance-level intonation, not just word-level
+stress.  A full range of stress markers (from $8 to $1) is
+available in phoneme-reading mode, giving you the abilitv to
+transcribe a wide variety of stress patterns:
+
+	$8	highest stress level
+
+	$6	equivalent to primary word stress
+
+	$5	equivalent to secondary word stress
+
+	$2	default (unstressed) level
+
+	$1	lowest stress level
+
+Stress markers mainly affect the duration and amplitude of
+syllables.  The marker must immediately follow the vowel of the
+syllable it marks.  Unmarked vowel phonemes are assigned default
+stress.
+
+Pitch markers are also used to specify the intonation contour of
+an utterance.  So that many different kinds of contours can be
+specified, a wide range of pitch targets is made available, from
+œ10 to œ3:
+
+	œ10	highest
+
+	œ6	pitch target for primary stressed syllables
+
+	œ-3	lowest
+
+Pitch targets are associated with:
+
+(1)	Syllables, and
+
+(2)	"$C" and "$P" prosodic boundary markers.
+
+On syllables, pitch markers immediately follow the stress
+marker.  If a syllable has no stress marker, the pitch target
+immediately follows the vowel phoneme for the syllable.  Pitch
+targets on boundaries immediately follow the boundary marker.
+
+Unmarked prosodic boundaries receive a default pitch target.
+However, unlike stress, there is no default pitch marking for
+syllables.  The actual pitch levels for unmarked syllables are
+interpolated from surrounding pitch targets.
+
+Boundaries can be marked with as many as two pitch targets.  Two
+pitch targets should appear on boundaries that have words both
+to the right and to the left.  The first target will be the
+final pitch level for the words that precede the boundary and
+the second target will be the pitch onset for the words that
+follow the boundary.  The initial and final "$C" of a text
+should each have only one pitch target.
+
+Syllables can also have up to two pitch targets.  However,
+usually a single target is sufficient.  Two pitch targets are
+permitted on stressed syllables only to allow for very rapid
+rises and falls in pitch.

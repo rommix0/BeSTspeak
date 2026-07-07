@@ -1,0 +1,13 @@
+usage: BeSTspeak [-h] --text TEXT [--prefix PREFIX]
+
+BeSTspeech TTS V1.01D 4
+Copyright © 1986-1995 Berkeley Speech Technologies
+Python code by @rommix0 (built on 11/3/2024)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --text TEXT, -t TEXT  text to feed to the synthesizer (required)
+  --prefix PREFIX, -p PREFIX
+                        prefix text to add (like for speech parameters)
+
+Synthesizes text to speech using the BeSTspeech (Keynote GOLD) TTS system
