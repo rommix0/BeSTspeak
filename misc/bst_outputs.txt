@@ -1,0 +1,7 @@
+> this is a test.
+
+ $C <> <> <> <> ~I4,19460] +dn dh I " <> <> s $W +v +dn I " <> <> z $W +dn +rd1 e $2 <> <> $W t E ' <> <> s t sl sl sl sl sl sl sl $C <> <> <> <> ;  $C <> <> <> <> ~I4,19460] sl $C <> <> <> <> ;
+
+> this is a simple sentence.
+
+ $C <> <> <> <> ~I4,19460] +dn dh I " <> <> s $W +v +dn I " <> <> z $W +dn +rd1 e $2 <> <> $W s I ' <> <> m p = $2 <> <> l $W s E ' <> <> n t = $2 <> <> n s sl sl sl sl sl sl sl $C <> <> <> <> ;  $C <> <> <> <> ~I4,19460] sl $C <> <> <> <> ;
