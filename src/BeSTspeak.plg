@@ -3,30 +3,30 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
---------------------Configuration: BeSTspeak - Win32 Debug--------------------
+--------------------Configuration: BeSTspeak - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x409 /fo"Debug/BeSTspeak.res" /d "_DEBUG" "C:\USERS\ABART\DESKTOP\BST_SPEAK\VC6\BeSTspeak\BeSTspeak.rc"" 
-Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP767C.tmp" with contents
+Creating command line "rc.exe /l 0x409 /fo"Release/BeSTspeak.res" /d "NDEBUG" "C:\Users\abart\Desktop\BeSTspeak Repo\BeSTspeak-v1.01\BeSTspeak.rc"" 
+Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP7CFD.tmp" with contents
 [
-/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/BeSTspeak.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\USERS\ABART\DESKTOP\BST_SPEAK\VC6\BeSTspeak\BeSTspeak.cpp"
+/nologo /ML /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/BeSTspeak.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\abart\Desktop\BeSTspeak Repo\BeSTspeak-v1.01\BeSTspeak.cpp"
 ]
-Creating command line "cl.exe @C:\Users\abart\AppData\Local\Temp\RSP767C.tmp" 
-Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP767D.tmp" with contents
+Creating command line "cl.exe @C:\Users\abart\AppData\Local\Temp\RSP7CFD.tmp" 
+Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP7CFE.tmp" with contents
 [
-/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/BeSTspeak.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\USERS\ABART\DESKTOP\BST_SPEAK\VC6\BeSTspeak\StdAfx.cpp"
+/nologo /ML /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/BeSTspeak.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\abart\Desktop\BeSTspeak Repo\BeSTspeak-v1.01\StdAfx.cpp"
 ]
-Creating command line "cl.exe @C:\Users\abart\AppData\Local\Temp\RSP767D.tmp" 
-Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP767E.tmp" with contents
+Creating command line "cl.exe @C:\Users\abart\AppData\Local\Temp\RSP7CFE.tmp" 
+Creating temporary file "C:\Users\abart\AppData\Local\Temp\RSP7CFF.tmp" with contents
 [
-kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/BeSTspeak.pdb" /debug /machine:I386 /out:"Debug/BeSTspeak.exe" /pdbtype:sept 
-.\Debug\BeSTspeak.obj
-.\Debug\StdAfx.obj
-.\Debug\BeSTspeak.res
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/BeSTspeak.pdb" /machine:I386 /out:"Release/BeSTspeak.exe" 
+".\Release\BeSTspeak.obj"
+".\Release\StdAfx.obj"
+".\Release\BeSTspeak.res"
 ]
-Creating command line "link.exe @C:\Users\abart\AppData\Local\Temp\RSP767E.tmp"
+Creating command line "link.exe @C:\Users\abart\AppData\Local\Temp\RSP7CFF.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...

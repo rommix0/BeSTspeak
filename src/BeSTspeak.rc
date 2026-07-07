@@ -31,7 +31,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_BESTSPEAK           ICON    DISCARDABLE     "bestspeak.ico"
+IDI_BESTSPEAK           ICON    DISCARDABLE     "bestspeak_opt.ICO"
 IDI_SMALL               ICON    DISCARDABLE     "bst_smal.ico"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -47,14 +47,16 @@ BEGIN
     END
     POPUP "&Controls"
     BEGIN
-        MENUITEM "&Increase Volume",            ID_CONTROLS_INCREASEVOLUME
-        MENUITEM "&Decrease Volume",            ID_CONTROLS_DECREASEVOLUME
-        MENUITEM "&Faster Speed",               ID_CONTROLS_FASTERSPEED
-        MENUITEM "&Slower Speed",               ID_CONTROLS_SLOWERSPEED
+        MENUITEM "&Decrease Volume\tF3",        ID_CONTROLS_DECREASEVOLUME
+        MENUITEM "&Increase Volume\tF4",        ID_CONTROLS_INCREASEVOLUME
+        MENUITEM "&Slower Speed\tF8",           ID_CONTROLS_SLOWERSPEED
+        MENUITEM "&Faster Speed\tF9",           ID_CONTROLS_FASTERSPEED
+        MENUITEM "&Lower Pitch\tF10",           ID_CONTROLS_PITCHDOWN
+        MENUITEM "Raise Pitch\tF11",            ID_CONTROLS_PITCHUP
         MENUITEM SEPARATOR
-        MENUITEM "Speak &Text",                 ID_CONTROLS_SPEAKTEXT
-        MENUITEM "St&op Speech",                ID_CONTROLS_SHUTUP
-        MENUITEM "&Reset Speech",               ID_CONTROLS_RESET
+        MENUITEM "Speak &Text\tF5",             ID_CONTROLS_SPEAKTEXT
+        MENUITEM "St&op Speech\tF6",            ID_CONTROLS_SHUTUP
+        MENUITEM "&Reset Speech\tF7",           ID_CONTROLS_RESET
     END
     POPUP "&Voices"
     BEGIN
@@ -73,30 +75,11 @@ BEGIN
         MENUITEM "Peeper",                      ID_VOICES_PEEPER
         MENUITEM "Dracula",                     ID_VOICES_DRACULA
     END
-    POPUP "Help", GRAYED
+    POPUP "&Help"
     BEGIN
-        MENUITEM "About ...",                   ID_HELP_ABOUT
+        MENUITEM "Key&board Commands\tF1",      IDM_HELP
+        MENUITEM "&About\tF2",                  IDM_ABOUT
     END
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDD_ABOUTBOX DIALOG DISCARDABLE  22, 17, 217, 124
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-FONT 8, "System"
-BEGIN
-    LTEXT           "BeSTspeak Version 1.0",IDC_STATIC,67,53,80,8,
-                    SS_NOPREFIX
-    LTEXT           "Copyleft © 2024 @rommix0 (GUI and custom voices)",
-                    IDC_STATIC,12,77,193,8
-    DEFPUSHBUTTON   "OK",IDOK,75,107,64,11,WS_GROUP
-    LTEXT           "Copyright © 1985, 1991 Berkeley Speech Technologies, Inc.",
-                    IDC_STATIC,12,87,198,11
-    CONTROL         132,IDC_STATIC,"Static",SS_BITMAP,67,7,77,38
 END
 
 
@@ -131,40 +114,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Bitmap
-//
-
-IDB_ABOUT               BITMAP  DISCARDABLE     "about_pic.bmp"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        BOTTOMMARGIN, 118
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Accelerator
-//
-
-SPEAKACCEL ACCELERATORS DISCARDABLE 
-BEGIN
-    VK_F1,          ID_CONTROLS_HELP,       VIRTKEY, NOINVERT
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // String Table
 //
 
@@ -172,6 +121,8 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_APP_TITLE           "BeSTspeak"
     IDC_BESTSPEAK           "BESTSPEAK"
+    COPYLEFT_STRING         "Copyleft © 2024 Anthony C. Bartman (@rommix0)"
+    COPYRIGHT_STRING        "Copyright © 1985, 1991 Berkeley Speech Technologies, Inc."
 END
 
 #endif    // English (U.S.) resources
