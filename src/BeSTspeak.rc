@@ -47,16 +47,16 @@ BEGIN
     END
     POPUP "&Controls"
     BEGIN
-        MENUITEM "&Decrease Volume\tF3",        ID_CONTROLS_DECREASEVOLUME
-        MENUITEM "&Increase Volume\tF4",        ID_CONTROLS_INCREASEVOLUME
-        MENUITEM "&Slower Speed\tF8",           ID_CONTROLS_SLOWERSPEED
-        MENUITEM "&Faster Speed\tF9",           ID_CONTROLS_FASTERSPEED
-        MENUITEM "&Lower Pitch\tF10",           ID_CONTROLS_PITCHDOWN
-        MENUITEM "Raise Pitch\tF11",            ID_CONTROLS_PITCHUP
+        MENUITEM "&Slower Speed\tF7",           ID_CONTROLS_SLOWERSPEED
+        MENUITEM "&Faster Speed\tF8",           ID_CONTROLS_FASTERSPEED
+        MENUITEM "&Lower Pitch\tF9",            ID_CONTROLS_PITCHDOWN
+        MENUITEM "Raise Pitch\tF10",            ID_CONTROLS_PITCHUP
+        MENUITEM "&Decrease Volume\tCtrl+F6",   ID_CONTROLS_DECREASEVOLUME
+        MENUITEM "&Increase Volume\tF6",        ID_CONTROLS_INCREASEVOLUME
         MENUITEM SEPARATOR
+        MENUITEM "&Reset Speech\tF3",           ID_CONTROLS_RESET
+        MENUITEM "St&op Speech\tF4",            ID_CONTROLS_SHUTUP
         MENUITEM "Speak &Text\tF5",             ID_CONTROLS_SPEAKTEXT
-        MENUITEM "St&op Speech\tF6",            ID_CONTROLS_SHUTUP
-        MENUITEM "&Reset Speech\tF7",           ID_CONTROLS_RESET
     END
     POPUP "&Voices"
     BEGIN
