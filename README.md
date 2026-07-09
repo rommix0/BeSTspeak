@@ -10,4 +10,6 @@ BeSTspeech has been used in both vintage hardware (such as the BrailleNote under
 
 Here is an audio clip showing off the voices:
 
-![Audio demo](bestspeak_demo.mp3)
+<audio controls>
+	<source src="bestspeak_demo.mp3" type="audio/mpeg">
+</audio>
