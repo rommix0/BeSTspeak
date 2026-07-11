@@ -2,7 +2,7 @@
   <img src="bstinc1.gif" />
 </p>
 
-# BeSTspeak
+# BeSTspeech
 
 This is a very straightforward text to speech speak window that interfaces with Berkeley Speech Technologies' vintage BeSTspeech T-T-S speech synthesizer via API calls.
 
